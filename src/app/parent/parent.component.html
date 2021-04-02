@@ -1,5 +1,64 @@
 
 <h2>PARENT</h2>
-{{message}}
+<div class="card" *ngIf="reg">
+    <div class="header">
+        <h1>REGISTER</h1>
+    </div>
+    <form class="form" id="form"  [formGroup]="form" >
+        <div class="form-group">
+            <label>Name :</label>
+            <input type="text" id="name" 
+            formControlName="name">
+            <div *ngIf="form.invalid && submitted ||form.invalid && form.touched " >
+            <div class="error" *ngIf="form.controls['name'].hasError('required')" >Enter your name</div>
+            <div class="error" *ngIf="form.controls['name'].hasError('pattern')" >Enter only Alphabets</div>
+        </div>
+        </div><br>
+        <div class="form-group">
+        <label>Gender :</label> 
+            <input type="radio" formControlName="gender" id="gender" value="male">Male 
+            <input type="radio" formControlName="gender" id="gender" value="female"> Female
+            <div *ngIf="form.invalid && submitted ||form.invalid && form.touched" >
+            <div class="error" *ngIf="form.controls['gender'].hasError('required')" >Select the gender</div>
+        </div>
+        </div><br>
+       <div class="form-group">
+        <label>Date of Birth :</label>
+        <input type="date" id="birthday" 
+        formControlName="Dob">
+        <div *ngIf="form.invalid && submitted ||form.invalid && form.touched" >
+        <div class="error" *ngIf="form.controls['Dob'].hasError('required')" >Select the DateofBirth</div>
+    </div>
+    </div><br>
+        <div class="form-group">
+            <label>Email :</label>
+            <input type="email" id="email" 
+            formControlName="email">
+            <div *ngIf="form.invalid && submitted ||form.invalid && form.touched" >
+            <div class="error" *ngIf="form.controls['email'].hasError('required')" >Enter your email</div>
+        </div>
+        </div><br>
+        <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!form.valid" type="submit">Next</button>
+    </form>
+</div>
 <hr>
-<app-child (childEvent)="message=$event" [parentData]="name"></app-child>
+<div *ngIf="addr" >  
+    <app-child [userData]="userDetails" (sendData)="getdetails($event)">  </app-child> 
+</div>
+<div *ngIf="edu" >  
+    <app-education [finalValue]="userDetails" (edudata)="getfinalvalue($event)">  </app-education> 
+</div>
+<div *ngIf="viewdetails" >
+    <b>REGISTERED DETAILS</b> <br>
+
+    <b>NAME :</b>{{userDetails.name}}<br>
+    <b>GENDER :</b>{{userDetails.gender}}<br>
+    <b>DOB :</b>{{userDetails.Dob}}<br>
+    <b>E-MAIL :</b>{{userDetails.email}}<br>
+    <b>CITY :</b>{{userDetails.address.city}}<br>
+    <b>ADDRESS :</b>{{userDetails.address.address}}<br>
+    <b>CONTACT NUMBER :</b>{{userDetails.address.contactnumber}}<br>
+    <b>COLLAGE NAME :</b>{{userDetails.education.collagename}}<br>
+    <b>YEAR OF COMPLETION :</b>{{userDetails.education.passedout}}<br>
+    <b>CGPA :</b>{{userDetails.education.score}}
+</div>

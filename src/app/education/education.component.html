@@ -1,0 +1,33 @@
+<div class="container" >
+    <div class="header">
+        <h1>Education</h1>
+    </div>
+    <form class="form" id="form"  [formGroup]="education" >
+        <div class="form-control">
+            <label>Collage name :</label>
+            <input type="text"  
+            formControlName="collagename">
+            <div *ngIf="education.invalid && submitted ||education.invalid && education.touched " >
+            <div class="error" *ngIf="education.controls['collagename'].hasError('required')" >Enter your collage name</div>
+            <div class="error" *ngIf="education.controls['collagename'].hasError('pattern')" >Enter only Alphabets</div>
+        </div>
+        </div><br>
+        <div class="form-control">
+        <label>Year of completion :</label> 
+            <input type="text"
+            formControlName="passedout">   
+            <div *ngIf="education.invalid && submitted ||education.invalid && education.touched" >
+            <div class="error" *ngIf="education.controls['passedout'].hasError('required')" >Enter year of completion</div>
+        </div>
+        </div><br>
+        <div class="form-control">
+            <label>CGPA :</label>
+            <input type="text" 
+            formControlName="score">
+            <div *ngIf="education.invalid && submitted ||education.invalid && education.touched" >
+            <div class="error" *ngIf="education.controls['score'].hasError('required')" >Enter your CGPA</div>
+        </div>
+        </div><br>
+        <button (click)="onSubmit()" [disabled]="!education.valid" type="submit">Submit</button>
+    </form>
+</div>
