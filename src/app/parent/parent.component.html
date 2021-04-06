@@ -1,13 +1,12 @@
-
-<h2>PARENT</h2>
-<div class="card" *ngIf="reg">
+    
+<div class="card-body" *ngIf="reg" >
     <div class="header">
-        <h1>REGISTER</h1>
+       <i><h1 class="card-header">REGISTER</h1></i> 
     </div>
     <form class="form" id="form"  [formGroup]="form" >
         <div class="form-group">
             <label>Name :</label>
-            <input type="text" id="name" 
+            <input type="text" id="name" class="form-control" 
             formControlName="name">
             <div *ngIf="form.invalid && submitted ||form.invalid && form.touched " >
             <div class="error" *ngIf="form.controls['name'].hasError('required')" >Enter your name</div>
@@ -15,7 +14,7 @@
         </div>
         </div><br>
         <div class="form-group">
-        <label>Gender :</label> 
+        <label>Gender :</label><br>
             <input type="radio" formControlName="gender" id="gender" value="male">Male 
             <input type="radio" formControlName="gender" id="gender" value="female"> Female
             <div *ngIf="form.invalid && submitted ||form.invalid && form.touched" >
@@ -24,32 +23,34 @@
         </div><br>
        <div class="form-group">
         <label>Date of Birth :</label>
-        <input type="date" id="birthday" 
+        <input type="date" id="birthday" class="form-control"
         formControlName="Dob">
         <div *ngIf="form.invalid && submitted ||form.invalid && form.touched" >
         <div class="error" *ngIf="form.controls['Dob'].hasError('required')" >Select the DateofBirth</div>
     </div>
     </div><br>
         <div class="form-group">
-            <label>Email :</label>
-            <input type="email" id="email" 
+            <label >Email :</label>
+            <input type="email" id="email" class="form-control"
             formControlName="email">
             <div *ngIf="form.invalid && submitted ||form.invalid && form.touched" >
             <div class="error" *ngIf="form.controls['email'].hasError('required')" >Enter your email</div>
+            <div class="error" *ngIf="form.controls['email'].hasError('pattern')" >Invalid email format</div>
         </div>
         </div><br>
         <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!form.valid" type="submit">Next</button>
     </form>
 </div>
-<hr>
+
+
 <div *ngIf="addr" >  
     <app-child [userData]="userDetails" (sendData)="getdetails($event)">  </app-child> 
 </div>
 <div *ngIf="edu" >  
     <app-education [finalValue]="userDetails" (edudata)="getfinalvalue($event)">  </app-education> 
 </div>
-<div *ngIf="viewdetails" >
-    <b>REGISTERED DETAILS</b> <br>
+<div class="details" *ngIf="viewdetails" >
+    <b><h3>REGISTERED DETAILS</h3></b> 
 
     <b>NAME :</b>{{userDetails.name}}<br>
     <b>GENDER :</b>{{userDetails.gender}}<br>

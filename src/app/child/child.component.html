@@ -1,12 +1,12 @@
-<h2>CHILD</h2>
-<div class="container">
+
+<div class="card-body">
     <div class="header">
-        <h1></h1>
+        <i><h1 class="card-header">Fill the fields</h1></i>
     </div>
     <form class="form" id="form"  [formGroup]="form2" >
-        <div class="form-control">
+        <div class="form-group">
             <label>City :</label>
-            <select name="City" id="city" 
+            <select name="City" id="city" class="form-control" 
             formControlName="city">
                 <option value="chennai">Chennai</option>
                 <option value="banglore">Banglore</option>
@@ -17,23 +17,23 @@
             <div class="error" *ngIf="form2.controls['city'].hasError('required')" >Select the city</div>
             </div>    
             </div><br>
-            <div class="form-control">
+            <div class="form-group">
                 <label>Address :</label>
-                <textarea id="address" rows="5" cols="30"
+                <textarea id="address" rows="5" cols="30" class="form-control" 
                 formControlName="address" ></textarea>
                 <div *ngIf="form2.invalid && submitted ||form2.invalid && form2.touched" >
                 <div class="error" *ngIf="form2.controls['address'].hasError('required')" >Enter your address</div>
             </div>
             </div><br>
-            <div class="form-control">
+            <div class="form-group">
                 <label>Contact Number :</label>
-                <input type="text" id="number" 
+                <input type="text" id="number" class="form-control" 
                 formControlName="contactnumber">
                 <div *ngIf="form2.invalid && submitted ||form2.invalid && form2.touched" >
                 <div class="error" *ngIf="form2.controls['contactnumber'].hasError('required')" >Enter your number</div>
                 <div class="error" *ngIf="form2.controls['contactnumber'].hasError('pattern')" >Enter only numerical values</div>
             </div>
             </div><br>
-            <button (click)="onSubmit()" [disabled]="!form2.valid" type="submit">Next</button>
+            <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!form2.valid" type="submit">Next</button>
     </form>
 </div>

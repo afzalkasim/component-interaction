@@ -15,8 +15,6 @@ export class ParentComponent implements OnInit {
   viewdetails:boolean=false;
   submitted = false;
   userDetails=new User();
-  // name="hello";
-  // message="";
   
   constructor(private _fb: FormBuilder) {
     
@@ -27,7 +25,7 @@ export class ParentComponent implements OnInit {
       name : ["", [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
       gender: ["", [Validators.required]],
       Dob: ["", [Validators.required]],
-      email: ["", [Validators.required]],
+      email: ["", [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
     
   })
   }
@@ -40,15 +38,14 @@ export class ParentComponent implements OnInit {
   }
   getdetails(value:User){
   console.log(value);
+  this.userDetails=value;
   this.addr=false;
   this.edu=true;
   }
   getfinalvalue(data:User){
     console.log(data);
     this.userDetails=data;
-    this.addr=false;
     this.edu=false;
-    this.reg=false;
     this.viewdetails=true;
 
     }

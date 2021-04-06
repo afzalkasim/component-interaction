@@ -11,13 +11,11 @@ export class ChildComponent implements OnInit {
   submitted = false;
   @Input() userData:User; 
   @Output() sendData= new EventEmitter();
-  // @Input() parentData:string;
-  // @Output() childEvent = new EventEmitter();
+
 
   constructor(private _fb: FormBuilder) { }
 
   ngOnInit(): void {
-    console.log(this.userData);
      this.form2 = this._fb.group({
      city: ["", [Validators.required]],
      address: ["", [Validators.required]],
@@ -26,10 +24,8 @@ export class ChildComponent implements OnInit {
 }
 onSubmit(){
   
-   this.userData.address=this.form2.value;
+  this.userData.address=this.form2.value;
   this.submitted=true;
-  // console.log(this.form2);
-  console.log(this.userData);
-  this.sendData.emit(this.userData.address);
+  this.sendData.emit(this.userData);
 }
 }

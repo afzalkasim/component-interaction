@@ -16,14 +16,13 @@ export class EducationComponent implements OnInit {
   ngOnInit(): void { 
     this.education = this._fb.group({
     collagename : ["", [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
-    passedout: ["", [Validators.required]],
-    score: ["", [Validators.required]],
+    passedout: ["", [Validators.required, Validators.pattern(/^\d*$/)]],
+    score: ["", [Validators.required, Validators.pattern(/^\d*$/)]],
   
 })
   }
   onSubmit(){
     this.submitted=true;
-    console.log(this.education.value);
     this.finalValue.education=this.education.value;
     this.edudata.emit(this.finalValue);
   }

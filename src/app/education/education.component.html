@@ -1,33 +1,35 @@
-<div class="container" >
+<div class="card-body" >
     <div class="header">
-        <h1>Education</h1>
+        <i><h1 class="card-header">Education</h1></i>
     </div>
     <form class="form" id="form"  [formGroup]="education" >
-        <div class="form-control">
+        <div class="form-group">
             <label>Collage name :</label>
-            <input type="text"  
+            <input type="text"  class="form-control"
             formControlName="collagename">
             <div *ngIf="education.invalid && submitted ||education.invalid && education.touched " >
             <div class="error" *ngIf="education.controls['collagename'].hasError('required')" >Enter your collage name</div>
             <div class="error" *ngIf="education.controls['collagename'].hasError('pattern')" >Enter only Alphabets</div>
         </div>
         </div><br>
-        <div class="form-control">
+        <div class="form-group">
         <label>Year of completion :</label> 
-            <input type="text"
+            <input type="text" class="form-control"
             formControlName="passedout">   
             <div *ngIf="education.invalid && submitted ||education.invalid && education.touched" >
             <div class="error" *ngIf="education.controls['passedout'].hasError('required')" >Enter year of completion</div>
+            <div class="error" *ngIf="education.controls['passedout'].hasError('pattern')" >Enter only numerical values</div>
         </div>
         </div><br>
-        <div class="form-control">
+        <div class="form-group">
             <label>CGPA :</label>
-            <input type="text" 
+            <input type="text" class="form-control"
             formControlName="score">
             <div *ngIf="education.invalid && submitted ||education.invalid && education.touched" >
             <div class="error" *ngIf="education.controls['score'].hasError('required')" >Enter your CGPA</div>
+            <div class="error" *ngIf="education.controls['score'].hasError('pattern')" >Enter only numerical values</div>
         </div>
         </div><br>
-        <button (click)="onSubmit()" [disabled]="!education.valid" type="submit">Submit</button>
+        <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!education.valid" type="submit">Submit</button>
     </form>
 </div>
